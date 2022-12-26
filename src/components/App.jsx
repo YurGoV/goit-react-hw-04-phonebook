@@ -22,7 +22,7 @@ export const App = () => {
 
   useEffect(() => {
     const localContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (localContacts.length > 0) {
+    if (localContacts) {
       console.log(localContacts);
       setContacts(localContacts);
     } else {
