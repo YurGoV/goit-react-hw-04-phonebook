@@ -1,9 +1,10 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {Section, Title} from "./App.styled";
 import {nanoid} from "nanoid";
 import {Filter} from "./Filter/Filter";
 import {ContactsList} from "./ContactsList/ContactsList";
 import {ContactForm} from "./ContactForm/ContactForm";
+import {useLocalStorage} from "./hooks/useLocalStorage";
 
 const contactsTemplate = [
   {id: 'id-1', name: 'Test contact One', number: '459-12-56'},//first time only
@@ -12,17 +13,17 @@ const contactsTemplate = [
   {id: 'id-4', name: 'Test contact Four', number: '227-91-26'},
 ];
 
-//todo: хук для локалстореджа
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    return JSON.parse(localStorage.getItem('contacts')) ?? contactsTemplate;
-  });
+  // const [contacts, setContacts] = useState(() => {
+  //   return JSON.parse(localStorage.getItem('contacts')) ?? contactsTemplate;
+  // });
+  const [contacts, setContacts] = useLocalStorage(contactsTemplate)
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    // console.log(contacts);
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  //   // console.log(contacts);
+  // }, [contacts]);
 
   const handleAddContact = ({name, number}) => {
 
