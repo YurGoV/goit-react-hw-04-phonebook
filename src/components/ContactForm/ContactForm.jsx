@@ -18,7 +18,6 @@ export const ContactForm = ({onSubmit}) => {
   return (
     <Formik
       initialValues={formicInitialValues}
-      // validationSchema={schema}
       onSubmit={onFormicSubmit}
     >
       <Form>
