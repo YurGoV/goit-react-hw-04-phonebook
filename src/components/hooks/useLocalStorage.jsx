@@ -3,14 +3,14 @@ import {useEffect, useState} from "react";
 
 
 
-export const useLocalStorage = (templateValue) => {
+export const useLocalStorage = (storageKey, templateValue) => {
   const [state, setState] = useState(() => {
-    return JSON.parse(localStorage.getItem('contacts')) ?? templateValue;
+    return JSON.parse(localStorage.getItem(storageKey)) ?? templateValue;
   });
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(state));
-  }, [state])
+    localStorage.setItem(storageKey, JSON.stringify(state));
+  }, [storageKey, state])
 
   return [state, setState]
 };
